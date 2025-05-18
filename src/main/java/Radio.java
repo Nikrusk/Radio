@@ -1,14 +1,34 @@
 public class Radio {
+    private int soundVolume; // громкость звука
+    private int maxRadioStation = 9; // максимальная радиостанция
+    private int minRadioStation = 0; // минимальная радиостанция
     private int currentRadioStation; // текущая радиостанция
-    public int soundVolume; // громкость звука
+
+    public Radio(int NewStation) {
+        this.currentRadioStation = NewStation;
+        maxRadioStation = NewStation - 1;
+    }
+
+    public Radio() {
+
+    }
+
 
     public int getCurrentRadioStation() { // гетер радиостанция
         return currentRadioStation;
     }
 
+    public int getMaxRadioStation() { // гетер максимальной радиостанции
+        return maxRadioStation;
+    }
+
+    public int getMinRadioStation() { // гетер минимальной радиостанции
+        return minRadioStation;
+    }
+
     public void setCurrentRadioStation(int newCurrentRadioStation) { // сетер радиостанция
 
-        if (newCurrentRadioStation > 9) {
+        if (newCurrentRadioStation > maxRadioStation) {
             return;
         }
         currentRadioStation = newCurrentRadioStation;
@@ -27,11 +47,11 @@ public class Radio {
     }
 
     public void setToLastRadioStation() { // последняя радиостанция
-        currentRadioStation = 9;
+        currentRadioStation = maxRadioStation;
     }
 
     public void setToFirstRadioStation() { // первая радиостанция
-        currentRadioStation = 0;
+        currentRadioStation = minRadioStation;
     }
 
     public void setToMaxSoundVolume() { // максимальная громкость
@@ -55,16 +75,16 @@ public class Radio {
     }
 
     public void nextRadioStation() { // следующая радиостанция
-        if (currentRadioStation >= 9) {
-            currentRadioStation = 0;
+        if (currentRadioStation >= maxRadioStation) {
+            currentRadioStation = minRadioStation;
         } else {
             currentRadioStation = currentRadioStation + 1;
         }
     }
 
     public void prevRadioStation() { // предыдущая радиостанция
-        if (currentRadioStation <= 0) {
-            currentRadioStation = 9;
+        if (currentRadioStation <= minRadioStation) {
+            currentRadioStation = maxRadioStation;
         } else {
             currentRadioStation = currentRadioStation - 1;
         }
